@@ -62,16 +62,79 @@ add_action('wp_enqueue_scripts', 'loadjs');
 add_theme_support('menus');
 add_theme_support('post-thumbnails');
 
-function roshankhapung_register_menus() {
-    register_nav_menus(
-        array(
-            'primary-menu' => __( 'Primary Menu', 'mytheme' ),
-            // You can add more menus by adding additional lines here
-            // 'secondary-menu' => __( 'Secondary Menu', 'mytheme' ),
-        )
-    );
+if ( ! function_exists( 'roshankhapung_setup' ) ) {
+    /**
+     * Set up theme support.
+     *
+     * @return void
+    */
+    function roshankhapung_setup() {
+        
+        add_theme_support(
+            'custom-logo',
+            [
+                'height'      => 100,
+                'width'       => 350,
+                'flex-height' => true,
+                'flex-width'  => true,
+            ]
+        );
+
+        add_theme_support( 'post-thumbnails' );
+		add_theme_support( 'automatic-feed-links' );
+		add_theme_support( 'title-tag' );
+		add_theme_support( 'html5',
+			[
+				'search-form',
+				'comment-form',
+				'comment-list',
+				'gallery',
+				'caption',
+				'script',
+				'style',
+			]
+        );
+
+        if ( apply_filters( 'roshankhapung_post_type_support', true ) ) {
+			add_post_type_support( 'page', 'excerpt' );
+		}
+
+        register_nav_menus(
+            array(
+                'primary-menu' => __( 'Primary Menu', 'roshankhapung' ),
+                // You can add more menus by adding additional lines here
+                // 'secondary-menu' => __( 'Secondary Menu', 'mytheme' ),
+            )
+        );
+
+        /*
+		 * Editor Style.
+		*/
+		add_editor_style( 'classic-editor.css' );
+
+        /*
+		 * Gutenberg wide images.
+		*/
+		add_theme_support( 'align-wide' );
+
+        /*
+		 * WooCommerce.
+		 */
+		if ( apply_filters( 'roshankhapung_add_woocommerce_support', true ) ) {
+			// WooCommerce in general.
+			add_theme_support( 'woocommerce' );
+			// Enabling WooCommerce product gallery features (are off by default since WC 3.0.0).
+			// zoom.
+			add_theme_support( 'wc-product-gallery-zoom' );
+			// lightbox.
+			add_theme_support( 'wc-product-gallery-lightbox' );
+			// swipe.
+			add_theme_support( 'wc-product-gallery-slider' );
+		}
+
+    }
 }
-add_action( 'after_setup_theme', 'roshankhapung_register_menus' );
+add_action( 'after_setup_theme', 'roshankhapung_setup' );
 
     
 //For add more extra single page

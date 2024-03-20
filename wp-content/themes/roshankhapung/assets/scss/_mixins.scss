@@ -137,3 +137,11 @@
     
 
 }
+
+// use as
+// .class{
+//     // css code for all size
+//     @include bp(above-md){
+//         // css code for screen size 
+//     }
+// }
