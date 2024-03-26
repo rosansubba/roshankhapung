@@ -44,8 +44,12 @@ $tagline   = get_bloginfo( 'description', 'display' );
 					<svg class="navigation__toggle opened" viewBox="15 15 70 70" xmlns="http://www.w3.org/2000/svg"><path class="line--1" d="M0 40h62c13 0 6 28-4 18L35 35"></path><path class="line--2" d="M0 50h70"></path><path class="line--3" d="M0 60h62c13 0 6-28-4-18L35 65"></path></svg>
 				</div>
 			</div>
-			<div class="navigation-section">
-				<nav class="site-navigation">
+			<div class="navigation-section navigation__overlay">
+				<span style="transition-delay: 0.3s;"></span>
+				<span style="transition-delay: 0.2s;"></span>
+				<span style="transition-delay: 0.1s;"></span>
+				<span style="transition-delay: 0s;"></span>
+				<nav class="site-navigation navigation__items">
 					<?php
 						$header_nav_menu = wp_nav_menu(
 							array(
@@ -57,6 +61,9 @@ $tagline   = get_bloginfo( 'description', 'display' );
 						);
 					?>
 				</nav>
+				<div class="header_footer">
+					<p>© 2024  Roshan Khapung</p>
+				</div>
 			</div>
 		</div>
 	</div>
